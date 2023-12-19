@@ -65,8 +65,8 @@ uses unitDM;
 
 procedure TForm1.btnGravarClick(Sender: TObject);
 begin
-  LimparCampos;
   InserirDados;
+
 
 end;
 
@@ -95,17 +95,16 @@ procedure TForm1.InserirDados;
 begin
   with DM.QryClientes do
     begin
-      close;
+      Close;
       SQL.Clear;
-      SQL.Add('insert into clients (nome, sobrenome, data_nascimento peso, sexo, email');
-      SQL.Add('cidade, bairro, endereco, uf, profissao values )');
-      SQL.Add('(:pnome, :psobrenome, :pdata_nascimento, :ppeso, :psexo, :pemail, :pcidade)');
-      SQL.Add('(:pbairro, :pendereco, :puf, :pprofissao)');
+      SQL.Add('insert into clientes (nome, sobrenome, data_nascimento, peso, sexo, ');
+      SQL.Add( 'email, cidade, bairro , endereco, uf, profissao) values ');
+      SQL.Add('(:pnome, :psobrenome, :pdata_nascimento, :ppeso, :psexo, :pemail, :pcidade, :pbairro, :pendereco, :puf, :pprofissao)');
       ParamByName('pnome').AsString := edtNome.Text;
       ParamByName('psobrenome').AsString := edtSobrenome.Text;
       ParamByName('pdata_nascimento').AsDate := StrToDate(maskDataNascimento.Text);
       ParamByName('ppeso').AsFloat := StrToFloat(edtPeso.Text);
-        If comboUF.ItemIndex = 0 then
+      If comboUF.ItemIndex = 0 then
           ParamByName('psexo').asstring := 'M'
         else
           ParamByName('psexo').asstring := 'F';
@@ -115,6 +114,7 @@ begin
       ParamByName('pendereco').AsString := edtEndereco.Text;
       ParamByName('puf').AsString := comboUF.Text;
       ParamByName('pprofissao').AsString := edtProfissao.Text;
+      ExecSQL;
     end;
 end;
 
@@ -136,7 +136,18 @@ end;
 
 procedure TForm1.PopularDados;
 begin
-
+  edtId.Text              := DM.QryClientes.FieldByName('ID').AsString;
+  edtNome.Text            := DM.QryClientes.FieldByName('NOME').AsString;
+  edtSobrenome.Text       := DM.QryClientes.FieldByName('SOBRENOME').AsString;
+  maskDataNascimento.Text := DM.QryClientes.FieldByName('DATA_NASCIMENTO').AsString;
+  edtPeso.Text            := DM.QryClientes.FieldByName('PESO').AsString;
+  edtSexo.ItemIndex       := DM.QryClientes.FieldByName('SEXO').AsString;
+  edtEmail.Text           := DM.QryClientes.FieldByName('EMAIL').AsString;
+  edtCidade.Text          := DM.QryClientes.FieldByName('CIDADE').AsString;
+  edtBairro.Text          := DM.QryClientes.FieldByName('BAIRRO').AsString;
+  edtEndereco.Text        := DM.QryClientes.FieldByName('ENDERECO').AsString;
+  comboUF.Text            := DM.QryClientes.FieldByName('UF').AsString;
+  edtProfissao 		  := DM.QryClientes.FieldByName('PROFISSAO').AsString;
 end;
 
 end.

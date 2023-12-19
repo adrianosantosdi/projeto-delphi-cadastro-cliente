@@ -54,8 +54,6 @@ object Form1: TForm1
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Cadastro'
-        ExplicitLeft = 8
-        ExplicitTop = -24
         object Label2: TLabel
           Left = 11
           Top = 24
@@ -303,10 +301,12 @@ object Form1: TForm1
         object maskDataNascimento: TMaskEdit
           Left = 656
           Top = 43
-          Width = 201
+          Width = 190
           Height = 21
+          EditMask = '##/##/####;1;_'
+          MaxLength = 10
           TabOrder = 12
-          Text = ''
+          Text = '  /  /    '
         end
       end
       object TabSheet2: TTabSheet
