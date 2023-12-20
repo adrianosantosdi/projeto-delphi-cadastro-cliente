@@ -24,7 +24,7 @@ object Form1: TForm1
     ParentBackground = False
     TabOrder = 0
     object Label1: TLabel
-      Left = 256
+      Left = 5
       Top = 25
       Width = 346
       Height = 29
@@ -35,6 +35,21 @@ object Form1: TForm1
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+    end
+    object edtPesquisar: TEdit
+      Left = 520
+      Top = 35
+      Width = 241
+      Height = 21
+      TabOrder = 0
+    end
+    object Pesquisar: TButton
+      Left = 767
+      Top = 33
+      Width = 75
+      Height = 25
+      Caption = 'Pesquisar'
+      TabOrder = 1
     end
   end
   object Panel2: TPanel
@@ -54,8 +69,6 @@ object Form1: TForm1
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Cadastro'
-        ExplicitLeft = 8
-        ExplicitTop = -24
         object Label2: TLabel
           Left = 11
           Top = 24
@@ -300,19 +313,33 @@ object Form1: TForm1
             TabOrder = 2
           end
         end
-        object edtDataNascimento: TEdit
+        object maskDataNascimento: TMaskEdit
           Left = 656
           Top = 43
-          Width = 201
+          Width = 190
           Height = 21
-          CharCase = ecUpperCase
-          Enabled = False
+          EditMask = '##/##/####;1;_'
+          MaxLength = 10
           TabOrder = 12
+          Text = '  /  /    '
         end
       end
       object TabSheet2: TTabSheet
         Caption = 'Pesquisa'
         ImageIndex = 1
+        object DBGrid1: TDBGrid
+          Left = 48
+          Top = 48
+          Width = 761
+          Height = 409
+          DataSource = DM.dsClientes
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
       end
     end
   end

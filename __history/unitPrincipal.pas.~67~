@@ -256,13 +256,12 @@ begin
                   '    email = :pemail,                     ' +
                   '    cidade = :pcidade,                   ' +
                   '    bairro = :pbairro,                   ' +
-                  '    endereco = :pendereco,              ' +
-                  '    uf = :puf,                          ' +
+                  '    endereco = : pendereco,              ' +
+                  '    uf = : puf,                          ' +
                   '    profissao = :pprofissao,             ' +
                   '    where id = :pid                      ');
 
    ParamByName('pid').AsInteger := StrToInt(edtId.Text);
-   ParamByName('pnome').AsString := edtNome.Text;
    ParamByName('psobrenome').AsString := edtSobrenome.Text;
    ParamByName('pdata_nascimento').AsString := maskDataNascimento.Text;
    ParamByName('ppeso').AsString := edtPeso.Text;

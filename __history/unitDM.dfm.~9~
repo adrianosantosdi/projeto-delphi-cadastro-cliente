@@ -14,7 +14,6 @@ object DM: TDM
     Top = 64
   end
   object QryClientes: TFDQuery
-    Active = True
     Connection = FDConn
     SQL.Strings = (
       'select * from clientes')
@@ -24,7 +23,6 @@ object DM: TDM
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
     object QryClientesnome: TStringField
       FieldName = 'nome'

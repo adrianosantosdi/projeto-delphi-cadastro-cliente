@@ -24,7 +24,7 @@ object Form1: TForm1
     ParentBackground = False
     TabOrder = 0
     object Label1: TLabel
-      Left = 256
+      Left = 5
       Top = 25
       Width = 346
       Height = 29
@@ -35,6 +35,35 @@ object Form1: TForm1
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+    end
+    object Label13: TLabel
+      Left = 448
+      Top = 36
+      Width = 63
+      Height = 16
+      Caption = 'Pesquisar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object edtPesquisa: TEdit
+      Left = 517
+      Top = 35
+      Width = 241
+      Height = 21
+      TabOrder = 0
+    end
+    object btnPesquisar: TButton
+      Left = 764
+      Top = 33
+      Width = 75
+      Height = 25
+      Caption = 'Pesquisar'
+      TabOrder = 1
+      OnClick = btnPesquisarClick
     end
   end
   object Panel2: TPanel
@@ -49,11 +78,15 @@ object Form1: TForm1
       Top = 1
       Width = 884
       Height = 560
-      ActivePage = TabSheet1
+      ActivePage = TabSheet2
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Cadastro'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label2: TLabel
           Left = 11
           Top = 24
@@ -294,8 +327,9 @@ object Form1: TForm1
             Top = 40
             Width = 75
             Height = 25
-            Caption = 'GRAVAR'
+            Caption = 'CANCELAR'
             TabOrder = 2
+            OnClick = Button1Click
           end
         end
         object maskDataNascimento: TMaskEdit
@@ -312,6 +346,48 @@ object Form1: TForm1
       object TabSheet2: TTabSheet
         Caption = 'Pesquisa'
         ImageIndex = 1
+        object DBGrid1: TDBGrid
+          Left = 48
+          Top = 48
+          Width = 761
+          Height = 377
+          DataSource = DM.dsClientes
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+        end
+        object Panel4: TPanel
+          Left = 0
+          Top = 464
+          Width = 876
+          Height = 68
+          Align = alBottom
+          Color = clMedGray
+          ParentBackground = False
+          TabOrder = 1
+          object btnEditar: TButton
+            Left = 320
+            Top = 24
+            Width = 75
+            Height = 25
+            Caption = 'Editar'
+            TabOrder = 0
+            OnClick = btnEditarClick
+          end
+          object btnExcluir: TButton
+            Left = 472
+            Top = 24
+            Width = 75
+            Height = 25
+            Caption = 'Excluir'
+            TabOrder = 1
+            OnClick = btnExcluirClick
+          end
+        end
       end
     end
   end

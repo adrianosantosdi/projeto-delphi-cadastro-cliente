@@ -41,8 +41,6 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
-uses unitPrincipal;
-
 {$R *.dfm}
 
 end.

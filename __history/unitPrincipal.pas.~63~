@@ -54,7 +54,6 @@ type
     procedure Button1Click(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -109,11 +108,6 @@ procedure TForm1.btnNovoClick(Sender: TObject);
 begin
   if MessageDlg('Deseja criar um novo registro?', mtConfirmation, [mbYes,mbNo],0) = mrYes then;
   HabilitarEdits;
-end;
-
-procedure TForm1.btnPesquisarClick(Sender: TObject);
-begin
-Pesquisar;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -247,22 +241,21 @@ begin
    begin
      close;
      SQL.Clear;
-     SQL.Add('update clientes                               ' +
-                  '    set nome = :pnome,                   ' +
-                  '    sobrenome = :psobrenome,             ' +
+     SQL.Add('update clientes                              ' +
+                  '    set nome = :pnome,                  ' +
+                  '    sobrenome = :psobrenome,            ' +
                   '    data_nascimento = :pdata_nascimento, ' +
                   '    peso = :ppeso,                       ' +
                   '    sexo = :psexo,                       ' +
                   '    email = :pemail,                     ' +
                   '    cidade = :pcidade,                   ' +
                   '    bairro = :pbairro,                   ' +
-                  '    endereco = :pendereco,              ' +
-                  '    uf = :puf,                          ' +
+                  '    endereco = : pendereco,              ' +
+                  '    uf = : puf,                          ' +
                   '    profissao = :pprofissao,             ' +
-                  '    where id = :pid                      ');
+                  '    where id = :pid');
 
    ParamByName('pid').AsInteger := StrToInt(edtId.Text);
-   ParamByName('pnome').AsString := edtNome.Text;
    ParamByName('psobrenome').AsString := edtSobrenome.Text;
    ParamByName('pdata_nascimento').AsString := maskDataNascimento.Text;
    ParamByName('ppeso').AsString := edtPeso.Text;
@@ -277,7 +270,6 @@ begin
    ParamByName('puf').AsString := comboUF.Text;
    ParamByName('pprofissao').AsString := edtProfissao.Text;
    ExecSQL;
-
 
    end;
 
