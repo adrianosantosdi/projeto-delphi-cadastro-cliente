@@ -78,15 +78,11 @@ object Form1: TForm1
       Top = 1
       Width = 884
       Height = 560
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Cadastro'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label2: TLabel
           Left = 11
           Top = 24
@@ -335,9 +331,9 @@ object Form1: TForm1
         object maskDataNascimento: TMaskEdit
           Left = 656
           Top = 43
-          Width = 190
+          Width = 178
           Height = 21
-          EditMask = '##/##/####;1;_'
+          EditMask = '99/99/9999;1;_'
           MaxLength = 10
           TabOrder = 12
           Text = '  /  /    '

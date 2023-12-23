@@ -53,6 +53,8 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,6 +65,7 @@ type
     procedure LimparCampos;
     procedure InserirDados;
     procedure Update;
+    procedure Excluir;
     procedure PopularDados;
   end;
 
@@ -82,6 +85,13 @@ begin
     PageControl1.ActivePageIndex := 0;
 end;
 
+procedure TForm1.btnExcluirClick(Sender: TObject);
+begin
+Excluir;
+Pesquisar;
+
+end;
+
 procedure TForm1.btnGravarClick(Sender: TObject);
 begin
    if trim(edtId.Text) = '' then
@@ -99,6 +109,11 @@ procedure TForm1.btnNovoClick(Sender: TObject);
 begin
   if MessageDlg('Deseja criar um novo registro?', mtConfirmation, [mbYes,mbNo],0) = mrYes then;
   HabilitarEdits;
+end;
+
+procedure TForm1.btnPesquisarClick(Sender: TObject);
+begin
+Pesquisar;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -122,6 +137,23 @@ begin
   edtEndereco.Enabled := false;
   comboUF.Enabled := false;
   edtProfissao.Enabled := false;
+end;
+
+procedure TForm1.Excluir;
+  var
+    LID : integer;
+begin
+   lID := DM.QryClientes.FieldByName('id').AsInteger;
+
+ with DM.QryClientes do
+    begin
+      close;
+      SQL.Clear;
+      SQL.Add('delete from clientes where id = :pid');
+      ParamByName('pid').AsInteger :=  lID;
+      ExecSQL;
+      MessageDlg('Registro deletado com sucesso', mtInformation, [mbOK], 0);
+    end;
 end;
 
 procedure TForm1.HabilitarEdits;
@@ -164,6 +196,7 @@ begin
       ParamByName('pprofissao').AsString := edtProfissao.Text;
       ExecSQL;
       LimparCampos;
+      Pesquisar;
     end;
 end;
 
@@ -185,7 +218,11 @@ end;
 
 procedure TForm1.Pesquisar;
 begin
+  DM.QryClientes.Close;
+  DM.QryClientes.SQL.Clear;
 
+  DM.QryClientes.SQL.Text := 'select * from clientes where nome like ' +  QuotedStr('%' + edtPesquisa.Text + '%') ;
+  DM.QryClientes.Open();
 end;
 
 procedure TForm1.PopularDados;
@@ -210,21 +247,22 @@ begin
    begin
      close;
      SQL.Clear;
-     SQL.Add('update clientes                              ' +
-                  '    set nome = :pnome,                  ' +
-                  '    sobrenome = :psobrenome,            ' +
+     SQL.Add('update clientes                               ' +
+                  '    set nome = :pnome,                   ' +
+                  '    sobrenome = :psobrenome,             ' +
                   '    data_nascimento = :pdata_nascimento, ' +
                   '    peso = :ppeso,                       ' +
                   '    sexo = :psexo,                       ' +
                   '    email = :pemail,                     ' +
                   '    cidade = :pcidade,                   ' +
                   '    bairro = :pbairro,                   ' +
-                  '    endereco = : pendereco,              ' +
-                  '    uf = : puf,                          ' +
-                  '    profissao = :pprofissao,             ' +
-                  '    where id = :pid');
+                  '    endereco = :pendereco,              ' +
+                  '    uf = :puf,                          ' +
+                  '    profissao = :pprofissao             ' +
+                  '    where id = :pid                      ');
 
    ParamByName('pid').AsInteger := StrToInt(edtId.Text);
+   ParamByName('pnome').AsString := edtNome.Text;
    ParamByName('psobrenome').AsString := edtSobrenome.Text;
    ParamByName('pdata_nascimento').AsString := maskDataNascimento.Text;
    ParamByName('ppeso').AsString := edtPeso.Text;
@@ -239,6 +277,7 @@ begin
    ParamByName('puf').AsString := comboUF.Text;
    ParamByName('pprofissao').AsString := edtProfissao.Text;
    ExecSQL;
+
 
    end;
 

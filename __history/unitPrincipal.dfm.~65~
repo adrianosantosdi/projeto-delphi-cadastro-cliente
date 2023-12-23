@@ -36,20 +36,34 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object edtPesquisar: TEdit
-      Left = 520
+    object Label13: TLabel
+      Left = 448
+      Top = 36
+      Width = 63
+      Height = 16
+      Caption = 'Pesquisar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object edtPesquisa: TEdit
+      Left = 517
       Top = 35
       Width = 241
       Height = 21
       TabOrder = 0
     end
-    object Pesquisar: TButton
-      Left = 767
+    object btnPesquisar: TButton
+      Left = 764
       Top = 33
       Width = 75
       Height = 25
       Caption = 'Pesquisar'
       TabOrder = 1
+      OnClick = btnPesquisarClick
     end
   end
   object Panel2: TPanel
@@ -309,16 +323,17 @@ object Form1: TForm1
             Top = 40
             Width = 75
             Height = 25
-            Caption = 'GRAVAR'
+            Caption = 'CANCELAR'
             TabOrder = 2
+            OnClick = Button1Click
           end
         end
         object maskDataNascimento: TMaskEdit
           Left = 656
           Top = 43
-          Width = 190
+          Width = 180
           Height = 21
-          EditMask = '##/##/####;1;_'
+          EditMask = '!99/99/9999;1;_'
           MaxLength = 10
           TabOrder = 12
           Text = '  /  /    '
@@ -331,14 +346,43 @@ object Form1: TForm1
           Left = 48
           Top = 48
           Width = 761
-          Height = 409
+          Height = 377
           DataSource = DM.dsClientes
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
+        end
+        object Panel4: TPanel
+          Left = 0
+          Top = 464
+          Width = 876
+          Height = 68
+          Align = alBottom
+          Color = clMedGray
+          ParentBackground = False
+          TabOrder = 1
+          object btnEditar: TButton
+            Left = 320
+            Top = 24
+            Width = 75
+            Height = 25
+            Caption = 'Editar'
+            TabOrder = 0
+            OnClick = btnEditarClick
+          end
+          object btnExcluir: TButton
+            Left = 472
+            Top = 24
+            Width = 75
+            Height = 25
+            Caption = 'Excluir'
+            TabOrder = 1
+            OnClick = btnExcluirClick
+          end
         end
       end
     end

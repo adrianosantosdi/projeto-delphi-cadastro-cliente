@@ -81,7 +81,7 @@ uses unitDM;
 procedure TForm1.btnEditarClick(Sender: TObject);
 begin
     HabilitarEdits;
-    Update;
+    PopularDados;
     PageControl1.ActivePageIndex := 0;
 end;
 
@@ -97,7 +97,7 @@ begin
    if trim(edtId.Text) = '' then
     InserirDados
   else
-      PopularDados;
+      Update;
 
     LimparCampos;
     Pesquisar;
@@ -212,6 +212,7 @@ begin
   edtEndereco.Text := '';
   comboUF.Text := '';
   edtProfissao.Text := '';
+  maskDataNascimento.Text := '';
 
 
 end;
@@ -258,7 +259,7 @@ begin
                   '    bairro = :pbairro,                   ' +
                   '    endereco = :pendereco,              ' +
                   '    uf = :puf,                          ' +
-                  '    profissao = :pprofissao,             ' +
+                  '    profissao = :pprofissao             ' +
                   '    where id = :pid                      ');
 
    ParamByName('pid').AsInteger := StrToInt(edtId.Text);

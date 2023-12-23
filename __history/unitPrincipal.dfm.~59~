@@ -63,6 +63,7 @@ object Form1: TForm1
       Height = 25
       Caption = 'Pesquisar'
       TabOrder = 1
+      OnClick = btnPesquisarClick
     end
   end
   object Panel2: TPanel
@@ -347,6 +348,7 @@ object Form1: TForm1
           Width = 761
           Height = 377
           DataSource = DM.dsClientes
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -379,6 +381,7 @@ object Form1: TForm1
             Height = 25
             Caption = 'Excluir'
             TabOrder = 1
+            OnClick = btnExcluirClick
           end
         end
       end
